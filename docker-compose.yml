@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  letsencrypt-auto:
+    build: .
+    container_name: letsencrypt-auto
+    volumes:
+      - ./certs:/certs
+    restart: always
+    environment:
+      - DOMAINS=vlthr.io
+      - EMAIL=webmaster@vlthr.io
+      - CONCAT=true   # Concatenate the cert chain and the private key into a single file (for applications like HAProxy)
+      - SEPARATE=true # Create separate certs for each domain
